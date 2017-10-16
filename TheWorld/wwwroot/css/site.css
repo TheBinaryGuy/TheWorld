@@ -1,0 +1,18 @@
+﻿body {
+    font-family: sans-serif;
+    font-size: medium;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+}
+
+input {
+    width: 150px;
+}
+
+input[type=submit] {
+    width: auto;
+    margin-top: 10px;
+}
