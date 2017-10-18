@@ -12,6 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "MailSettings__ToAddress": "heetms1234@gmail.com",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

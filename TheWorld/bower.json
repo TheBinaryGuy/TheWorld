@@ -2,7 +2,8 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "underscore": "1.8.3",
-    "jQuery": "3.2.0"
+    "bootstrap": "v3.3.7",
+    "font-awesome": "fontawesome#v4.7.0",
+    "bootswatch": "v3.3.7"
   }
 }
