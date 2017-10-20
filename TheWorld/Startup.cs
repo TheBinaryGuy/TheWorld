@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using TheWorld.Middleware;
+using TheWorld.Models;
 using TheWorld.Services;
 
 namespace TheWorld
@@ -38,14 +40,27 @@ namespace TheWorld
                 //services.AddScoped<IMailService, ProductionMailService>();
             }
 
+            services.AddDbContext<WorldContext>();
+
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
+            services.AddTransient<WorldContextSeedData>();
+
+            services.AddLogging();
+
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder, ILoggerFactory factory)
         {
             if (_env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                factory.AddDebug(LogLevel.Information);
+            }
+            else
+            {
+                factory.AddDebug(LogLevel.Error);
             }
 
             //app.UseNodeModules(_env.ContentRootPath);
@@ -56,7 +71,10 @@ namespace TheWorld
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" });
             });
-            app.UseFileServer();
+
+            //app.UseFileServer();
+
+            seeder.EnsureSeedData().Wait();
         }
     }
 }
