@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Linq;
 using TheWorld.Models;
 using TheWorld.Services;
 using TheWorld.ViewModels;

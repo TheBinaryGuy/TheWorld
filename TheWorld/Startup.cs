@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TheWorld.Middleware;
+//using Newtonsoft.Json.Serialization;
+//using TheWorld.Middleware;
 using TheWorld.Models;
 using TheWorld.Services;
 
@@ -49,6 +50,11 @@ namespace TheWorld
             services.AddLogging();
 
             services.AddMvc();
+
+            //services.AddMvc().AddJsonOptions(config =>
+            //{
+            //    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //});
         }
 
         public void Configure(IApplicationBuilder app, WorldContextSeedData seeder, ILoggerFactory factory)
